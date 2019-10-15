@@ -104,6 +104,15 @@ Bucket="s3-100million-files-test"
 
 ./CreateMasterFilesAndConfig.sh ${NumberOfFiles} ${StartDate} ${EndDate} ${Bucket}
 ```
+
+### (2) コピーリストの作成
+```
+#CSV生成
+./generate_testfiles_list.py
+
+#生成したCSVの確認
+wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
+```
 1フォルダ15万オブジェクト格納前提時の、対象オブジェクト総数と期間設定の例
 
 |オブジェクト数|開始日|終了日|作成フォルダ数|想定リスト作成時間/想定リストサイズ|
@@ -115,15 +124,6 @@ Bucket="s3-100million-files-test"
 |100050000|2015/1/1|2016/10/28|667|約15分 / 約10-15GB|
 |200100000|2015/1/1|2018/8/26|1334||
 
-### (2) コピーリストの作成
-```
-#CSV生成
-./generate_testfiles_list.py
-
-#生成したCSVの確認
-wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
-```
-1億ファイルのリスト作成で15分程度かかり、作成後のCSVファイルは約10−15GB程度になります。
 ### (3) バケット内のオブジェクトコピー実行
 ```
 nohup ./S3_CopyObject_ParallelExecution.sh &
