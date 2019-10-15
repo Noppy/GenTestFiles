@@ -2,20 +2,17 @@
 
 # Configuration
 Target_List_CSV_FILE="list_of_copy_files.csv"
-NumOfParallels=$1
-SummaryResultCSVFile=$2
-AwsRetry=${3:-4}
+NumOfParallels=${1:-800}
+SummaryResultCSVFile=${2:-ResultsSummary_CopyObject.csv}
+AwsRetry=20
 ExecCommand=./S3_CopyObject.py
 
-if [ ! ${NumOfParallels} -gt 0 ]; then
-    echo "Invalit Number of Paralles.(NumOfParalles=${NumOfParallels})"
-    exit 1
-fi
 
-if [ ! -f ${SummaryResultCSVFile} ]; then
-    echo "Not found a summary csv file(SummaryResultCSVFile=${SummaryResultCSVFile})"
-    exit 1
-fi
+function help {
+    echo "S3_CopyObject_ParallelExecution.sh NumOfParallels SummaryResultsCSVFile"
+    echo "    NumOfParallels : Specify a number of Parallels."
+    echo "    SummaryResultsCSVFile : Specify FileName of the results report file."
+}
 
 
 # Initialize
