@@ -4,6 +4,7 @@
 Target_List_CSV_FILE="list_of_copy_files.csv"
 NumOfParallels=${1:-800}
 SummaryResultCSVFile=${2:-ResultsSummary_CopyObject.csv}
+DetailResultsFile=${3:-ResultsDetail}
 AwsRetry=20
 ExecCommand=./S3_CopyObject.py
 
@@ -57,10 +58,10 @@ EndTime=$(date '+%s')
 echo "Done all test programs."
 
 # Print result
-cat test_3_results_temp_* > test_3_results_${rows}_${NumOfParallels}.csv
+cat test_3_results_temp_* > ${DetailResultsFile}_${rows}_${NumOfParallels}.csv
 rm test_3_results_temp_*
-success=$(grep -c Success test_3_results_${rows}_${NumOfParallels}.csv)
-failed=$(grep -c Failed test_3_results_${rows}_${NumOfParallels}.csv)
+success=$(grep -c Success ${DetailResultsFile}_${rows}_${NumOfParallels}.csv )
+failed=$(grep -c Failed ${DetailResultsFile}_${rows}_${NumOfParallels}.csv )
 total=$(( success+failed ))
 
 echo "NumOfFiles, NumOfParallels, ExeTime(sec), StartTime, EndTime, SuccessedFiles, FailedFiles, TotalFiles"
