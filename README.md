@@ -136,8 +136,8 @@ cat config.json
 #生成したCSVの確認
 wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
 ```
-
+1億ファイルのリスト作成で15分程度かかり、作成後のCSVファイルは約10−15GB程度になります。
 ### (4) バケット内のオブジェクトコピー実行
 ```
-nohup S3_CopyObject_ParallelExecution.sh &
+nohup ./S3_CopyObject_ParallelExecution.sh &
 ```
