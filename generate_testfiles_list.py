@@ -176,8 +176,6 @@ def generate_a_folder(args, config, dest_folder_path):
             name,ext = os.path.splitext( os.path.basename(src["Path"]) )
             # Generate a CSV row data
             row = [
-                src["Path"],
-                os.path.join( dest_folder_path, name+"_{:06d}".format(i)+ext ),
                 src_urlparse.netloc,
                 src_urlparse.path.strip("/"),
                 dst_urlparse.netloc,
