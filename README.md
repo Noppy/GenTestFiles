@@ -87,7 +87,7 @@ cd /data
 git clone https://github.com/Noppy/GenTestFiles.git
 ```
 
-## テストファイル作成
+## マスターファイル作成とCopyObjectの実行
 ### (1) マスターファイル作成
 ```
 #マスターファイル用のディレクトリ作成と移動
@@ -135,4 +135,9 @@ cat config.json
 
 #生成したCSVの確認
 wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
+```
+
+### (4) バケット内のオブジェクトコピー実行
+```
+nohup S3_CopyObject_ParallelExecution.sh &
 ```
