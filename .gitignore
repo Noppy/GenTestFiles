@@ -105,10 +105,11 @@ venv.bak/
 
 # Original
 test/
-*.csv
 test_3_target_list_*
 test_3_results*
 test_3_sar_*
 nohup.out
 settings.json
 config.json
+*.csv
+!master_list.csv
