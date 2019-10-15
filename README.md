@@ -88,47 +88,28 @@ git clone https://github.com/Noppy/GenTestFiles.git
 ```
 
 ## マスターファイル作成とCopyObjectの実行
-### (1) マスターファイル作成
+
+### (1) マスターファイル作成/アップロード/コピーリスト作成用pythonツールのためのJSONコンフィグファイル作成
+マスターファイルのサイズと分布のリスト(CSV)を作成します。
+master_list.csv
 ```
-#マスターファイル用のディレクトリ作成と移動
-cd /data
-mkdir master && cd master ; pwd
-
-#マスターファイル生成
-dd if=/dev/urandom of=test-001MB.dat bs=1024 count=1024
-
-#マスターファイルのS3アップロード
-Profile=default
-MasterFileList="test-001MB.dat test-001MB.dat test-001MB.dat test-001MB.dat test-001MB.dat"
-Bucket=s3-100million-files-test
-
-for src in ${MasterFileList}
-do
-    hash=$( cat /dev/urandom | base64 | fold -w 10 | sed -e 's/[\/\+\=]/0/g' | head -n 1 )
-    aws --profile=${Profile} s3 cp ${src} "s3://${Bucket}/${hash}-original-data/"
-done
+10,2940
+50,2800
+100,17850
+以下略
+"<ファイルサイズ(KB)>,<ファイル比率>"で作成します。
 ```
-
-### (2) コピーリスト作成用pythonツールのためのJSONコンフィグファイル作成
-作成するファイル数とディレクトリ数を調整します。
+CreateMasterFilesAndConfig.shで、マスターファイルの作成、S3アップロード、リスト生成用ツールのconfig作成を行います。
 ```
-# configration JSON用のテンプレート生成
-cd /data/GenTestFiles
-
-#要件に応じて設定
-NumberOfFiles="100006368"   #作成するディレクトリ数
+NumberOfFiles="300000"
 StartDate="2015/1/1"
-EndDate="2019/12/31"
-Bucket=s3-100million-files-test
+EndDate="2015/1/2"
+Bucket="s3-100million-files-test"
 
-#Jsonファイル生成
-./gen_json.sh "${NumberOfFiles}" "${StartDate}" "${EndDate}" "${Bucket}"
-
-#作成したJSONファイルの確認
-cat config.json
+./CreateMasterFilesAndConfig.sh ${NumberOfFiles} ${StartDate} ${EndDate} ${Bucket}
 ```
 
-### (3) コピーリストの作成
+### (2) コピーリストの作成
 ```
 #CSV生成
 ./generate_testfiles_list.py
@@ -137,7 +118,7 @@ cat config.json
 wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
 ```
 1億ファイルのリスト作成で15分程度かかり、作成後のCSVファイルは約10−15GB程度になります。
-### (4) バケット内のオブジェクトコピー実行
+### (3) バケット内のオブジェクトコピー実行
 ```
 nohup ./S3_CopyObject_ParallelExecution.sh &
 ```

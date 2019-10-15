@@ -59,11 +59,11 @@ def get_args():
         required=False,
         help='Specify output CSV file.')
 
-    parser.add_argument('-r','--reverse',
+    parser.add_argument('-a','--addhash',
         action='store_true',
         default=False,
         required=False,
-        help='Reverse destination directory structure.')
+        help='Add hast to directories.')
 
     return( parser.parse_args() )
 
@@ -80,20 +80,14 @@ def create_folders(args, period):
         print("Invalid StartDate or EndDate.")
         return
 
-    # Generate hash for revverse
-    reversehour = {}
-    for hour in range(0, 24):
-        hash = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(4)])
-        reversehour["{:02d}".format( hour )] = hash + '-' + "{:02d}".format( hour )
-
     # generate foler path
     pd = start_day
     while pd <= end_day:
-        for hour in range(0,24):
-            if args.reverse:
-                folders.append( "{0}/{1:02d}/{2:02d}/{3:04d}/".format( reversehour["{:02d}".format( hour )], pd.day, pd.month, pd.year) )
-            else:
-                folders.append( "{0:04d}/{1:02d}/{2:02d}/{3:02d}/".format( pd.year, pd.month, pd.day, hour) )
+        if args.addhash:
+            hash = ''.join([random.choice(string.ascii_letters + string.digits) for i in range(6)])
+            folders.append( "{0}-{1:04d}{2:02d}{3:02d}/".format( hash, pd.year, pd.month, pd.day ) )
+        else:
+            folders.append( "{0:04d}{1:02d}{2:02d}/".format( pd.year, pd.month, pd.day) )
 
         # Add 1day
         pd += datetime.timedelta(days=1)

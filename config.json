@@ -1,49 +1,93 @@
 {
-    "NumberOfFiles": "100006368",
+    "NumberOfFiles": "10000",
     "Period": {
         "StartDate": "2015/1/1",
         "EndDate": "2019/12/31"
     },
     "Source": [
       {
-            "Path": "s3://s3-100million-files-test/5EeYpwku8O-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/vQVeLT0KDT-original-data/test-000010KB.dat",
+            "Ratio": 2940
       },
       {
-            "Path": "s3://s3-100million-files-test/63ekWu14nN-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/vAkgP0d0XS-original-data/test-000050KB.dat",
+            "Ratio": 2800
       },
       {
-            "Path": "s3://s3-100million-files-test/O5Q58MtWfb-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/lmFVaO9YrS-original-data/test-000100KB.dat",
+            "Ratio": 17850
       },
       {
-            "Path": "s3://s3-100million-files-test/T26539RIFD-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/q0kFW3grBz-original-data/test-000200KB.dat",
+            "Ratio": 24840
       },
       {
-            "Path": "s3://s3-100million-files-test/bwr3Ef9PJZ-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/0ZnpsJ10OG-original-data/test-000300KB.dat",
+            "Ratio": 15810
       },
       {
-            "Path": "s3://s3-100million-files-test/ckpvR8Sc0U-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/OeEutTO0dP-original-data/test-000400KB.dat",
+            "Ratio": 10220
       },
       {
-            "Path": "s3://s3-100million-files-test/ipECLFeJYx-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/gEgEzHz7nI-original-data/test-000500KB.dat",
+            "Ratio": 8250
       },
       {
-            "Path": "s3://s3-100million-files-test/mM45MvCTOE-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/1vg59C0PHb-original-data/test-000600KB.dat",
+            "Ratio": 5230
       },
       {
-            "Path": "s3://s3-100million-files-test/nc8YKN0tvs-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/7n4WKlnaoP-original-data/test-000700KB.dat",
+            "Ratio": 5160
       },
       {
-            "Path": "s3://s3-100million-files-test/uU8EXFi5P2-original-data/test-001MB.dat",
-            "Ratio": 1
+            "Path": "s3://s3-100million-files-test/RWswXqUAsN-original-data/test-000800KB.dat",
+            "Ratio": 3730
+      },
+      {
+            "Path": "s3://s3-100million-files-test/XdOrlhvEpB-original-data/test-000900KB.dat",
+            "Ratio": 3370
+      },
+      {
+            "Path": "s3://s3-100million-files-test/19FHPSxrZX-original-data/test-001000KB.dat",
+            "Ratio": 24530
+      },
+      {
+            "Path": "s3://s3-100million-files-test/e8ZolhqQHX-original-data/test-002000KB.dat",
+            "Ratio": 11720
+      },
+      {
+            "Path": "s3://s3-100million-files-test/coqYzj3yoe-original-data/test-003000KB.dat",
+            "Ratio": 4950
+      },
+      {
+            "Path": "s3://s3-100million-files-test/NGV0pNN3ys-original-data/test-004000KB.dat",
+            "Ratio": 2830
+      },
+      {
+            "Path": "s3://s3-100million-files-test/8vbHtSfELU-original-data/test-005000KB.dat",
+            "Ratio": 2120
+      },
+      {
+            "Path": "s3://s3-100million-files-test/p4KMa4VYT2-original-data/test-006000KB.dat",
+            "Ratio": 1110
+      },
+      {
+            "Path": "s3://s3-100million-files-test/BkPyD0dfLX-original-data/test-007000KB.dat",
+            "Ratio": 500
+      },
+      {
+            "Path": "s3://s3-100million-files-test/ni88MZZ11A-original-data/test-008000KB.dat",
+            "Ratio": 790
+      },
+      {
+            "Path": "s3://s3-100million-files-test/BB2jt1D6Pi-original-data/test-009000KB.dat",
+            "Ratio": 140
+      },
+      {
+            "Path": "s3://s3-100million-files-test/6RHS2ZGxZn-original-data/test-010000KB.dat",
+            "Ratio": 1110
       }
     ],
     "Destination": {
