@@ -111,3 +111,4 @@ test_3_results*
 test_3_sar_*
 nohup.out
 settings.json
+config.json
