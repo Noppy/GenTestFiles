@@ -64,7 +64,13 @@ def get_args():
         default=False,
         required=False,
         help='Add hast to directories.')
-
+    
+    parser.add_argument('-s','--subfolders',
+        action='store',
+        default=-1,
+        required=False,
+        help='Number of Subfolders. 0 or less do not create subfolders. The default is -1')
+    
     return( parser.parse_args() )
 
 
@@ -161,6 +167,14 @@ def generate_a_folder(args, config, dest_folder_path):
     # Initilize
     files = []
 
+    # Multi-Layerチェック
+    if args.subfolders <= 0 :
+        subfolders = False
+    else:
+        subfolders = True
+        max_subfolders = int(args.subfolders)
+
+    subfolder_number = 0
     for src in config["Source"]:
 
         src_urlparse = urlparse.urlparse( src["Path"] )
@@ -168,14 +182,31 @@ def generate_a_folder(args, config, dest_folder_path):
 
         for i in range(0, src["Number"]):
             name,ext = os.path.splitext( os.path.basename(src["Path"]) )
-            # Generate a CSV row data
-            row = [
-                src_urlparse.netloc,
-                src_urlparse.path.strip("/"),
-                dst_urlparse.netloc,
-                os.path.join( dst_urlparse.path.strip("/"), name+"_{:06d}".format(i)+ext ),
+            if subfolders:
+                # Generate a CSV row data
+                row = [
+                    src_urlparse.netloc,
+                    src_urlparse.path.strip("/"),
+                    dst_urlparse.netloc,
+                    os.path.join( dst_urlparse.path.strip("/"), "{:04d}".format(subfolder_number), name+"_{:06d}".format(i)+ext ),
+                ]
+
+                # subfolder
+                subfolder_number += 1
+                if subfolder_number >= max_subfolders :
+                    subfolder_number = 0
+
+            else:
+                # Generate a CSV row data
+                row = [
+                    src_urlparse.netloc,
+                    src_urlparse.path.strip("/"),
+                    dst_urlparse.netloc,
+                    os.path.join( dst_urlparse.path.strip("/"), name+"_{:06d}".format(i)+ext ),
                 
-            ]
+                ]
+            
+            # add a row
             files.append(row)
     
     return( files )
