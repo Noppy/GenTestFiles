@@ -16,7 +16,7 @@ aws --profile ${PROFILE} iam attach-user-policy --user-name ${USERNAME} --policy
 result=$(aws --profile ${PROFILE} iam create-access-key --user-name ${USERNAME})
 accesskey=$(echo ${result} | jq -r '.AccessKey.AccessKeyId')
 secretkey=$(echo ${result} | jq -r '.AccessKey.SecretAccessKey')
-echo "${username},${accesskey},${secretkey}"
+echo "${USERNAME},${accesskey},${secretkey}"
 ```
 S３をKMSのCMKで暗号化している場合は、CMKのキーポリシーに作成したIAMユーザを追加する。
 
