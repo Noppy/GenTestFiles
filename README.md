@@ -5,7 +5,7 @@
 ## 環境準備
 ### (1) IAMユーザ作成
 ```
-PROFILE=mobilepush
+PROFILE="<任意のプロファイル名を設定する>"
 USERNAME=GenTestFIle-S3OperationUser
 
 aws --profile ${PROFILE} iam create-user --user-name ${USERNAME}
