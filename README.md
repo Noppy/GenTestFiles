@@ -108,6 +108,19 @@ Bucket="s3-100million-files-test"
 ```
 
 ### (2) コピーリストの作成
+#### (2)-(a) 階層化しないディレクトリ構成の場合
+日付のフォルダ(YYYYMMDD)配下に、1日分のファイルをフラットに格納する構成にする場合は下記コマンドを実行してください。
+```
+YYYYMMDD
+   +File00001
+   +File00002
+       :
+YYYYMMDD
+   +File00001
+   +File00002
+       :
+```
+
 ```
 #CSV生成
 ./generate_testfiles_list.py
@@ -115,6 +128,31 @@ Bucket="s3-100million-files-test"
 #生成したCSVの確認
 wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
 ```
+#### (2)-(b) 階層化したディレクトリ構成の場合
+日付のフォルダ(YYYYMMDD)配下に、1日分のファイルをフラットに格納する構成にする場合は下記コマンドを実行してください。
+```
+YYYYMMDD
+   +0001
+     +File00001
+     +File00002
+   +0002
+     +File00001
+     +File00002
+   +0003
+       :
+YYYYMMDD
+   +0001
+       :
+```
+
+```
+#CSV生成
+./generate_testfiles_list.py --subfolders "一つのYYYYMMDDディレクトリに作成するサブフォルダ数"
+
+#生成したCSVの確認
+wc -l list_of_copy_files.csv   #行数確認(NumberOfFilesと同じ行数が作成)
+```
+#### (2)-(c) 補足
 1フォルダ15万オブジェクト格納前提時の、対象オブジェクト総数と期間設定の例
 
 |オブジェクト数|開始日|終了日|作成フォルダ数|想定リスト作成時間/想定リストサイズ|
