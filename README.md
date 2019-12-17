@@ -81,6 +81,8 @@ aws configure set output json
 sudo yum -y install git
 cd /data
 git clone https://github.com/Noppy/GenTestFiles.git
+
+cd GenTestFiles
 ```
 
 ## マスターファイル作成とCopyObjectの実行
