@@ -1,4 +1,4 @@
-# GenTestFiles
+# SGWPoC-GenTestFiles
 テスト用のファイルをS3バケット内で増殖させるツール
 
 # 作成手順
